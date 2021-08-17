@@ -1,0 +1,12 @@
+Package: GreenSim
+Type: Package
+Title: Nested Green Simulation
+Version: 0.1.0
+Author: Mingbin Feng, Qingyuan Chen
+Maintainer: Qingyuan Chen <q283chen@uwaterloo.ca>
+Description: An implementation of the Nested Green Simulation Algorithm created by Mingbin Feng and Qingyuan Chen in 2021.
+License: GPL-3
+LazyData: true
+Encoding: UTF-8
+Depends: nnls
+LazyData: true
