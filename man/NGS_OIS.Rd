@@ -4,7 +4,7 @@
 Optimal Importance Sampling Estimators
 }
 \description{
-Calculate Optimal Importance Sampling estimators of the specified objective function at each outer scenario from nested Green Simulation.
+Calculate Optimal Importance Sampling estimators of the specified bounded objective function at each outer scenario from nested Green Simulation.
 }
 \usage{
 NGS_OIS(S_tau, rf = 0.05, T2M = 11/12, vol = 0.3, N_In = 100, h, M, sn = FALSE)
