@@ -58,7 +58,7 @@ S0 = 100        # initial stock price
 vol = 30e-2     # annual volatility
 
 tau = 1/12      # one month
-T = 1           # time to maturity from time 0
+T = 1           # time-to-maturity from time 0
 
 N_Out = 10      # number of outer scenarios
 N_In = 5e2      # number of inner scenarios
