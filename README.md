@@ -49,11 +49,11 @@ Documentations of the above functions can be accesed by typing `?` before each f
 For instance, the user can read the function `NGS_MLR`'s argument, output and examples in detail by typing `?NGS_MLR`.
 
 # Example
-Suppose you have a financial instrument consisting a zero-coupon bond with face value $10 and time-to-maturity one year, as well as a bonus of $10 if the underlying stock price S1 after one year from time 0 is greater than strike price K = 100. Hence, the objective function is h(x) = exp(-11r/12) [10 + 10I(S1>K)] where r is the risk-free rate. 
+Suppose you have a financial instrument consisting a zero-coupon bond with face value $10 and time-to-maturity one year, as well as a bonus of $10 if the underlying stock price S1 after one year from time 0 is greater than strike price K = 100. Hence, the objective function is h(x) = exp(-11r/12) [10 + 10I(S1>K)] where r is the annual risk-free rate. 
 
 We set up the function paramters in the following codes. 
 ```r setup
-rf = 5e-2       # risk-free rate
+rf = 5e-2       # annual risk-free rate
 S0 = 100        # initial stock price
 vol = 30e-2     # annual volatility
 
