@@ -71,7 +71,7 @@ S_tau = seq(from = min, to = max, length.out = N_Out)  # outer scenario stock pr
 
 h = function(x){
   return(exp(-T2M*rf) * (10*as.numeric(x>100)+10))
-}               # objective function
+}              # objective function
 M = 10 + 10    # upper bound
 sn = FALSE     # without self-normalization
 ```
