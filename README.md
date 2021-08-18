@@ -1,12 +1,12 @@
 # GreenSim
 Nested Green Simulation Algorithm.
 
-## Description
+# Description
 This package is an implementation of Nested Green Simulation Algorithm. 
 
 Suppose in a nested simulation setting, we simulate scenarios in the outer step and then estimate an objective function's expected value conditional on the corresponding outer scenario in the inner step. Nested Green Simulation Algorithm reuses samples from a single distribution to construct all inner scenarios' estimators via importance sampling.
 
-## Installation
+# Installation
 Install `GreenSim` from GitHub:
 ```r
 install.packages("devtools")
@@ -19,10 +19,10 @@ or directly from the `GreenSim_0.1.0.tar.gz`:
 install.packages("GreenSim_0.1.0.tar.gz", repos = NULL, type = "source")
 library(GreenSim)
 ```
-## Function
+# Function
 Fourteen functions are contained in this package. Seven functions are the implementation of nested Green Simulation methods, and the others are helper functions for density calculation, random varaible simulation and weight fitting.
 
-# Nested Green Simulation Methods
+## Nested Green Simulation Methods
 * `NGS_MIS`: Calculate Marginal Importance Sampling estimators of an objective function at each outer scenario from nested Green Simulation.
 * `NGS_MLR`: Calculate Mixture Likelihood Ratio estimators of an objective function at each outer scenario from nested Green Simulation.
 * `NGS_CIS`: Calculate Constant Importance Sampling estimators of an objective function at each outer scenario from nested Green Simulation.
@@ -31,20 +31,20 @@ Fourteen functions are contained in this package. Seven functions are the implem
 * `NGS_LS`: Calculate Least Square estimators of an objective function, mimicing Optimal Importance Sampling estimators, at each outer scenario from nested Green Simulation.
 * `NGS_LS.fb`: Calculate Least Square estimators of an objective function with given beta at each outer scenario from nested Green Simulation.
 
-# Density Calculation
+## Density Calculation
 * `f.beta`: Calculate the density of mixture distribution, consisting each outer scenario distibution, with given weights.
 * `g.c`: Calculate the density of optimal proposal distribution without normalizing constant when the objective function is constant.
 * `g.star`: Calculate the density of optimal proposal distribution without normalizing constant for an objective function.
 
-# Random Variable Simulation
+## Random Variable Simulation
 * `A_R.c`: Simulate random variables from optimal proposal distribution of a **constant** objective function using Acceptance-Rejection.
 * `A_R.b`: Simulate random variables from optimal proposal distribution of a **bounded** objective function using Acceptance-Rejection.
 
-# Weight Fitting
+## Weight Fitting
 * `ls.c.fitting`: Fit optimal weights of each outer scenario distibution by Least Square, aiming to mimic optimal proposal distibution of constant objective function by a mixture distribution.
 * `ls.fitting`: Fit optimal weights of each outer scenario distibution by Least Square, aiming to mimic optimal proposal distibution of the specified objective function by a mixture distribution.
 
-## Documentation
+# Documentation
 Documentations of the above functions can be accesed by typing `?` before each function's name at the R command. 
 For instance, the user can read the function `NGS_MLR`'s argument, output and examples in detail by typing `?NGS_MLR`.
 
