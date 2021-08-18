@@ -95,8 +95,8 @@ Finally we illustrate the estimates in the following plot.
 df <- rbind(df_MLR, df_OIS, df_LS)
 ggplot(df) +
   geom_point(aes(x = outer, y = est, color = Method)) +
-  labs(x = "Outer Scenario", y ="Estimated Fair Price", 
-       title="Importance Sampling Estimates without Self-Normalization") +
-  theme(plot.title=element_text(hjust = 0.5))
+  labs(x = "Outer Scenario", y = "Estimated Fair Price", 
+       title = "Importance Sampling Estimates without Self-Normalization") +
+  theme(plot.title = element_text(hjust = 0.5))
 ```
 ![image](https://imgur.com/QhiGtER.png#center)
