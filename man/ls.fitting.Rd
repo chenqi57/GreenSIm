@@ -4,7 +4,7 @@
 Least Square Fitting for Optimal Beta for Optimal Proposal Distribution
 }
 \description{
-Fitting optimal weights of each outer scenario distibution by Least Square, aiming to mimic optimal proposal distibution of the specified objective function by a mixture distribution.
+Fit optimal weights of each outer scenario distibution by Least Square, aiming to mimic optimal proposal distibution of the specified objective function by a mixture distribution.
 }
 \usage{
 ls.fitting(S_tau, rf = 0.05, T2M = 11/12, vol = 0.3, N_In = 100, h)

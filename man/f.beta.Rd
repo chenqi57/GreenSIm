@@ -4,7 +4,7 @@
 Mixture Distribution of Outer Scenarios
 }
 \description{
-Calculate the density of mixture distribution.
+Calculate the density of mixture distribution, consisting each outer scenario distibution, with given weights.
 }
 \usage{
 f.beta(x, beta, S_tau, rf, T2M, vol)

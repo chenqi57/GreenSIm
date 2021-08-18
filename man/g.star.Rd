@@ -4,7 +4,7 @@
 Optimal Proposal Distribution
 }
 \description{
-Calculate the density of optimal proposal distribution without normalizing constant for specified objective function.
+Calculate the density of optimal proposal distribution without normalizing constant for the specified objective function.
 }
 \usage{
 g.star(x, S_tau, rf, T2M, vol, h)
