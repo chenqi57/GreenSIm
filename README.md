@@ -99,4 +99,4 @@ ggplot(df) +
        title="Importance Sampling Estimates without Self-Normalization") +
   theme(plot.title=element_text(hjust = 0.5))
 ```
-![image](https://imgur.com/QhiGtER)
+![image](https://imgur.com/QhiGtER.png#center)
