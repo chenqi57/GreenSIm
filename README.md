@@ -79,7 +79,6 @@ sn = FALSE     # without self-normalization
 Then we use the `GreenSim` package to calculate the MLR, OIS, LS estimates as an example.
 ```r NGS
 library(GreenSim)
-set.seed(818)
 MLR <- NGS_MLR(S_tau, rf, T2M, vol, N_In, h, sn)
 df_MLR <- data.frame(outer = S_tau, est = MLR, Method = rep("MLR", N_Out))
 
