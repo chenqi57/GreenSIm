@@ -92,6 +92,7 @@ df_LS <- data.frame(outer = S_tau, est = LS, Method = rep("LS", N_Out))
 
 Finally we illustrate the estimates in the following plot.
 ```r plot
+library(ggplot2)
 df <- rbind(df_MLR, df_OIS, df_LS)
 ggplot(df) +
   geom_point(aes(x = outer, y = est, color = Method)) +
