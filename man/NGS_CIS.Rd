@@ -7,16 +7,14 @@ Constant Importance Sampling Estimators
 Calculate Constant Importance Sampling estimators of the specified objective function at each outer scenario from nested Green Simulation.
 }
 \usage{
-NGS_CIS(S_tau, rf = 0.05, T2M = 11/12, vol = 0.3, N_In = 100, h, sn = FALSE)
+NGS_CIS(outer, df, rf, N_In = 100, h, sn = FALSE)
 }
 \arguments{
-  \item{S_tau}{vector of outer scenario stock prices.
+  \item{outer}{vector of parameters simulated in outer scenario.
 }
-  \item{rf}{risk-free rate.
+  \item{df}{density functions for the class of distributions inner simulation random variables follow.
 }
-  \item{T2M}{time-to-maturity from outer scenario time.
-}
-  \item{vol}{annual volatility of the underlying stock.
+  \item{rf}{random generation for the class of distributions inner simulation random variables follow.
 }
   \item{N_In}{number of inner replications for each outer scenario.
 }
@@ -29,7 +27,8 @@ NGS_CIS(S_tau, rf = 0.05, T2M = 11/12, vol = 0.3, N_In = 100, h, sn = FALSE)
 A vector of Constant Importance Sampling estimates for each outer scenario. The length of the result is determined by number of outer scenarios.
 }
 \examples{
-rf = 5e-2   # risk-free rate
+library(functional)
+r = 5e-2    # risk-free rate
 S0 = 100    # initial stock price
 vol = 30e-2 # annual volatility
 
@@ -41,12 +40,16 @@ N_In = 5e2      # number of inner samples
 
 T2M = T - tau
 
-min <- qlnorm(1e-4, meanlog = (rf-0.5*vol^2)*tau + log(S0), sdlog = (vol*sqrt(tau)))
-max <- qlnorm(1-1e-4, meanlog = (rf-0.5*vol^2)*tau + log(S0), sdlog = (vol*sqrt(tau)))
+min <- qlnorm(1e-4, meanlog = (r-0.5*vol^2)*tau + log(S0), sdlog = (vol*sqrt(tau)))
+max <- qlnorm(1-1e-4, meanlog = (r-0.5*vol^2)*tau + log(S0), sdlog = (vol*sqrt(tau)))
 S_tau <- seq(from = min, to = max, length.out = N_Out)
+mu <- log(S_tau) + (r-0.5*vol^2)*T2M
+sig <- vol * sqrt(T2M)
+df <- Curry(dnorm, sd = sig)
+rf <- Curry(rnorm, sd = sig)
 
-h <- function(x){return(pmax(x-90, 0) - pmax(x-110, 0) + 10)}
+h <- function(x){return(pmax(exp(x)-90, 0) - pmax(exp(x)-110, 0) + 10)}
 
-NGS_CIS(S_tau, rf, T2M, vol, N_In, h, TRUE)
-NGS_CIS(S_tau, rf, T2M, vol, N_In, h, FALSE)
+NGS_CIS(mu, df, rf, N_In, h, TRUE)
+NGS_CIS(mu, df, rf, N_In, h, FALSE)
 }
