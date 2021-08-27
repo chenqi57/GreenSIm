@@ -9,7 +9,6 @@ Suppose in a nested simulation setting, we simulate scenarios in the outer step 
 # Installation
 Install `GreenSim` from GitHub:
 ```r
-install.packages("devtools")
 library(devtools)
 devtools::install_github("chenqi57/GreenSim")
 library(GreenSim)
