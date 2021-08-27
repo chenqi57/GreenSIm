@@ -13,9 +13,9 @@ library(devtools)
 devtools::install_github("chenqi57/GreenSim")
 library(GreenSim)
 ```
-or directly from the `GreenSim_0.1.0.tar.gz`:
+or directly from the `GreenSim_1.1.0.tar.gz`:
 ```r
-install.packages("GreenSim_0.1.0.tar.gz", repos = NULL, type = "source")
+install.packages("GreenSim_1.1.0.tar.gz", repos = NULL, type = "source")
 library(GreenSim)
 ```
 # Function
