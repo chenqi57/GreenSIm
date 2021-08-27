@@ -53,7 +53,8 @@ Suppose you have a financial instrument consisting a zero-coupon bond with face 
 
 We set up the function paramters in the following codes. 
 ```r setup
-rf = 5e-2       # annual risk-free rate
+library(functional)
+r = 5e-2        # annual risk-free rate
 S0 = 100        # initial stock price
 vol = 30e-2     # annual volatility
 
@@ -65,12 +66,16 @@ N_In = 5e2      # number of inner scenarios
 
 T2M = T - tau   # time to maturity from outer scenario time
 
-min = qlnorm(1e-4, meanlog = (rf-0.5*vol^2)*tau + log(S0), sdlog = (vol*sqrt(tau)))
-max = qlnorm(1-1e-4, meanlog = (rf-0.5*vol^2)*tau + log(S0), sdlog = (vol*sqrt(tau)))
-S_tau = seq(from = min, to = max, length.out = N_Out)  # outer scenario stock price
+min <- qlnorm(1e-4, meanlog = (r-0.5*vol^2)*tau + log(S0), sdlog = (vol*sqrt(tau)))
+max <- qlnorm(1-1e-4, meanlog = (r-0.5*vol^2)*tau + log(S0), sdlog = (vol*sqrt(tau)))
+S_tau <- seq(from = min, to = max, length.out = N_Out)
+mu <- log(S_tau) + (r-0.5*vol^2)*T2M
+sig <- vol * sqrt(T2M)
+df <- Curry(dnorm, sd = sig)
+rf <- Curry(rnorm, sd = sig)
 
 h = function(x){
-  return(exp(-T2M*rf) * (10*as.numeric(x>100)+10))
+  return(exp(-T2M*r) * (10*as.numeric(exp(x)>100)+10))
 }              # objective function
 M = 10 + 10    # upper bound
 sn = FALSE     # without self-normalization
@@ -79,13 +84,13 @@ sn = FALSE     # without self-normalization
 Then we use the `GreenSim` package to calculate the MLR, OIS, LS estimates as an example.
 ```r NGS
 library(GreenSim)
-MLR <- NGS_MLR(S_tau, rf, T2M, vol, N_In, h, sn)
+MLR <- NGS_MLR(mu, df, rf, N_In, h, sn)
 df_MLR <- data.frame(outer = S_tau, est = MLR, Method = rep("MLR", N_Out))
 
-OIS <- NGS_OIS(S_tau, rf, T2M, vol, N_In, h, M, sn)
+OIS <- NGS_OIS(mu, df, rf, N_In, h, M, sn)
 df_OIS <- data.frame(outer = S_tau, est = OIS, Method = rep("OIS", N_Out))
 
-LS <- NGS_LS(S_tau, rf, T2M, vol, N_In, 0.8, h, sn)
+LS <- NGS_LS(mu, df, rf, N_In, 0.8, h, sn)
 df_LS <- data.frame(outer = S_tau, est = LS, Method = rep("LS", N_Out))
 ```
 
